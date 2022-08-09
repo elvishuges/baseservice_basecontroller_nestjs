@@ -1,5 +1,6 @@
 import { ApiOperation } from '@nestjs/swagger';
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Request, Post, UseGuards, Get } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { AppService } from './app.service';
 
 @Controller('')

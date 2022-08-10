@@ -4,6 +4,7 @@ import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AuthService } from './auth.service';
 import { UserLoginDto } from './dto/user-login.dto';
+import { CreateUserDto } from './../users/dto/create-user.dto';
 import { UsersService } from './../users/users.service';
 
 @ApiTags('auth')
@@ -19,5 +20,10 @@ export class AuthController {
   @ApiOperation({ summary: 'Login' })
   async login(@Body() loginDto: UserLoginDto, @Request() req): Promise<any> {
     return req.user;
+  }
+
+  @Post('register')
+  async register(@Body() dto: CreateUserDto): Promise<any> {
+    return this.usersService.create(dto);
   }
 }

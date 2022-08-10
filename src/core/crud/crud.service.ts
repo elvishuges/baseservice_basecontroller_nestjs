@@ -2,7 +2,6 @@ import { Inject, BadGatewayException } from '@nestjs/common';
 import { Repository, DeepPartial, DeleteResult } from 'typeorm';
 import { Model } from 'mongoose';
 import { ICrudService } from './interfaces/crud-service.interface';
-import { CourseBase } from '../shema/course.base';
 import { NotFoundException } from '@nestjs/common';
 
 export class CrudService<T> implements ICrudService<T> {

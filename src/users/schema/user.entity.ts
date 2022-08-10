@@ -9,19 +9,19 @@ export type UserDocument = User & Document;
 @Schema()
 export class User {
   @Index()
-  @Column()
+  @Prop()
   firstName: string;
 
   @Index()
-  @Column()
+  @Prop()
   lastName: string;
 
   @Index({ unique: true })
-  @Column()
+  @Prop()
   email: string;
 
   @Exclude({ toPlainOnly: true })
-  @Column({
+  @Prop({
     transformer: {
       to(password: string) {
         return hashSync(password, 10);
@@ -33,7 +33,7 @@ export class User {
   })
   password: string;
 
-  @Column({ default: false })
+  @Prop({ default: false })
   isActive: boolean;
 }
 

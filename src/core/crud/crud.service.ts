@@ -12,7 +12,10 @@ export class CrudService<T> implements ICrudService<T> {
       return new Promise<number>((resolve, reject) => {
         this.genericModel
           .create(entity)
-          .then((created) => resolve(created.id))
+          .then((created) => {
+            const entity = this.findOne(created.id);
+            return resolve(entity as any);
+          })
           .catch((err) => reject(err));
       });
     } catch (error) {

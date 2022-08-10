@@ -1,4 +1,11 @@
-import { Controller, Post, UseGuards, Request, Body } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  UseGuards,
+  Request,
+  Body,
+  BadRequestException,
+} from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { LocalAuthGuard } from './guards/local-auth.guard';
@@ -24,6 +31,12 @@ export class AuthController {
 
   @Post('register')
   async register(@Body() dto: CreateUserDto): Promise<any> {
-    return this.usersService.create(dto);
+    try {
+      await this.usersService.validCreate(dto);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+
+    return await this.usersService.create(dto);
   }
 }

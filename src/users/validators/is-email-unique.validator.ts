@@ -21,6 +21,7 @@ export class IsEmailUnique implements ValidatorConstraintInterface {
    */
   public async validate(email: string): Promise<boolean> {
     const userExists = await this.usersService.findByEmail(email);
+    console.log('aqui');
 
     return userExists === undefined;
   }

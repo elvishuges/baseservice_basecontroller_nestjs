@@ -8,16 +8,13 @@ export type UserDocument = User & Document;
 
 @Schema()
 export class User {
-  @Index()
   @Prop()
   firstName: string;
 
-  @Index()
   @Prop()
   lastName: string;
 
-  @Index({ unique: true })
-  @Prop()
+  @Prop({ unique: true })
   email: string;
 
   @Exclude({ toPlainOnly: true })
